@@ -6,9 +6,6 @@
   stroke: #ccc;
 }
 
-.node text {
-  pointer-events: none;
-}
 
 </style>
 <body>
@@ -46,6 +43,9 @@ d3.json("graph.json", function(error, json) {
       .attr("class", "node")
       .call(force.drag);
 
+node.append('circle')
+    .attr('r', 12)
+    .attr('fill','red');
   //node.append("image")
     //  .attr("xlink:href", "https://github.com/favicon.ico")
     //  .attr("x", -8)
@@ -64,14 +64,13 @@ d3.json("graph.json", function(error, json) {
     .text(function(d) { return '\uf118' }); 
 */
 
-  node.append('text')
+ node.append('text')
     .attr('text-anchor', 'middle')
     .attr('dominant-baseline', 'central')
     .attr('font-family', 'FontAwesome')
     .attr('font-size', '20px')
     .text(function(d) { return FONT_AWESOME[Object.keys(FONT_AWESOME)[Math.floor(Math.random()*Object.keys(FONT_AWESOME).length)]]});
 
-console.log(Object.keys(FONT_AWESOME))
 
 
   force.on("tick", function() {
